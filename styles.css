@@ -1,5 +1,5 @@
 /* ===================================
-   Apple-Inspired Design System
+   Modern Dark Neon Design System
    =================================== */
 
 /* Base Styles */
@@ -14,6 +14,29 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    background: #0a0e27;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.2) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.2) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.2) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(168, 85, 247, 0.2) 0px, transparent 50%);
+    min-height: 100vh;
+    color: #e2e8f0;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* Custom Scrollbar - Minimal Apple Style */
@@ -40,13 +63,16 @@ html {
 }
 
 /* ===================================
-   Navigation - Apple Style
+   Navigation - Modern Glass Style
    =================================== */
 
 .apple-nav {
     backdrop-filter: saturate(180%) blur(20px);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     transition: all 0.3s ease;
+    background: rgba(10, 14, 39, 0.8) !important;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.2) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 .apple-nav-link {
@@ -69,54 +95,76 @@ html {
     width: 100%;
 }
 
+/* Products Dropdown */
+.products-dropdown:hover .products-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.products-dropdown-menu {
+    z-index: 100;
+}
+
+.products-dropdown button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 .apple-button {
-    background: #0071e3;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
     color: white;
     padding: 8px 16px;
     border-radius: 980px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
 }
 
 .apple-button:hover {
-    background: #0077ED;
-    transform: scale(1.02);
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
 }
 
 .apple-button-large {
     display: inline-block;
-    background: #0071e3;
+    background: linear-gradient(135deg, #6366f1, #ec4899);
     color: white;
     padding: 14px 28px;
     border-radius: 980px;
     font-size: 17px;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
+    box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
 }
 
 .apple-button-large:hover {
-    background: #0077ED;
-    transform: scale(1.02);
-    box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
+    background: linear-gradient(135deg, #7c3aed, #f472b6);
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.7);
 }
 
 .apple-button-secondary-large {
     display: inline-block;
-    background: transparent;
-    color: #0071e3;
+    background: rgba(99, 102, 241, 0.1);
+    color: #a5b4fc;
     padding: 14px 28px;
     border-radius: 980px;
-    border: 2px solid #0071e3;
+    border: 2px solid rgba(99, 102, 241, 0.5);
     font-size: 17px;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
 }
 
 .apple-button-secondary-large:hover {
-    background: #0071e3;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
     color: white;
-    transform: scale(1.02);
+    border-color: transparent;
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
 }
 
 /* ===================================
@@ -142,10 +190,17 @@ html {
 }
 
 .apple-gradient-text {
-    background: linear-gradient(90deg, #0071e3 0%, #00c6fb 100%);
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #3b82f6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: gradientShift 3s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 /* ===================================
@@ -153,17 +208,20 @@ html {
    =================================== */
 
 .apple-service-card {
-    background: white;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
     padding: 40px;
     border-radius: 24px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .apple-service-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-    border-color: rgba(0, 113, 227, 0.2);
+    box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4);
+    border-color: rgba(99, 102, 241, 0.6);
+    background: rgba(15, 23, 42, 0.8);
 }
 
 .apple-product-feature {
@@ -192,27 +250,34 @@ html {
 .apple-stat-card {
     text-align: center;
     padding: 32px;
-    background: white;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(10px);
     border-radius: 16px;
     transition: all 0.3s ease;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .apple-stat-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+    border-color: rgba(99, 102, 241, 0.5);
 }
 
 .apple-value-card {
     padding: 32px;
-    background: white;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(10px);
     border-radius: 20px;
     transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .apple-value-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+    border-color: rgba(99, 102, 241, 0.5);
 }
 
 .apple-team-card {
@@ -233,15 +298,18 @@ html {
 
 .apple-tech-card {
     padding: 40px 32px;
-    background: white;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
     border-radius: 24px;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .apple-tech-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4);
+    border-color: rgba(99, 102, 241, 0.6);
 }
 
 /* ===================================
@@ -251,7 +319,7 @@ html {
 .apple-link-arrow {
     display: inline-flex;
     align-items: center;
-    color: #0071e3;
+    color: #a5b4fc;
     font-size: 17px;
     font-weight: 500;
     text-decoration: none;
@@ -259,7 +327,7 @@ html {
 }
 
 .apple-link-arrow:hover {
-    color: #0077ED;
+    color: #c7d2fe;
 }
 
 .apple-link-arrow i {
@@ -522,4 +590,16 @@ button:focus-visible {
 
 .transition-smooth {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===================================
+   Image Error Handling
+   =================================== */
+
+.app-image.image-error {
+    display: none !important;
+}
+
+.app-image {
+    transition: opacity 0.3s ease;
 }
